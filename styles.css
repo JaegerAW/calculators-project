@@ -47,7 +47,11 @@ body {
     text-align: right;
     
 }
-
+#formula {
+    height: 15px;
+    font-size: 15px;
+    display: none;
+}
 .buttons {
     display: flex;
     flex-direction: column;

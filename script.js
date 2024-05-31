@@ -51,7 +51,7 @@ const negativeBtn = document.querySelector("#plusminus");
 const percentageBtn = document.querySelector("#percentage");
 const decimalBtn = document.querySelector("#decimal");
 const equalBtn = document.querySelector("#equal")
-
+const displayFormula = document.querySelector('#formula');
 
 
 const audio = new Audio("pick-92276.mp3");
@@ -60,11 +60,13 @@ one.addEventListener("click", ()=>{
     if (displayContent.textContent === "0") {
         displayContent.textContent = ""
         displayContent.textContent += "1"
+        displayFormula.textContent += "1"
         }
 
     else if (displayContent !== null) {
-        displayContent.textContent = "";
+
         displayContent.textContent += "1";
+        displayFormula.textContent += "1";
         audio.play();
     }
         }
@@ -145,10 +147,13 @@ zero.addEventListener("click", ()=>{
 //for operator buttons (add,subtract,multiply,divide),
 // if displayContent ="", firstNumber = displayContent,
 // and put the clicked operator
+//BUG: pressing equal more than once adds firstNumber each time;
+
 addBtn.addEventListener("click", ()=> {
     if (!firstNumber) {
         firstNumber = parseInt(displayContent.textContent);
         operator = add;
+        displayContent.textContent = '';
     }
    /*
     else if (firstNumber !== null && secondNumber !== null) {
@@ -177,7 +182,8 @@ equalBtn.addEventListener('click', () => {
 })
 //for clear button just displayContent = "";
 clearBtn.addEventListener("click", ()=>{
-    displayContent.textContent ="0"
+    displayContent.textContent ="0";
+    displayFormula.textContent = '';
     firstNumber = '';
     secondNumber = '';
 });
