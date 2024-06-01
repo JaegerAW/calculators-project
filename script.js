@@ -1,5 +1,4 @@
 //targets the display
-const display = document.querySelector("#display");
 
 //operators
 
@@ -15,6 +14,7 @@ const divide = (num1, num2) => num1 / num2; //divide function
 let firstNumber;
 let operator;
 let secondNumber;      
+let sum;
 
 //create a function operate, with 3 params, num1, operator, num2
 /*const formula = {
@@ -30,8 +30,8 @@ function operate(firstNumber, operator, SecondNumber) {
 // next i click operator, first it will add the number above to num1
 
 //buttons
-const displayContent = document.querySelector("#display");
-displayContent.textContent = "0";
+const display = document.querySelector("#display");
+display.textContent = "0";
 const one = document.querySelector("#one");
 const two = document.querySelector("#two");
 const three = document.querySelector("#three");
@@ -54,35 +54,36 @@ const equalBtn = document.querySelector("#equal")
 const displayFormula = document.querySelector('#formula');
 
 
+
 const audio = new Audio("pick-92276.mp3");
 
 one.addEventListener("click", ()=>{
-    if (displayContent.textContent === "0") {
-        displayContent.textContent = ""
-        displayContent.textContent += "1"
+    if (display.textContent === "0") {
+        display.textContent = ""
+        display.textContent += "1"
         displayFormula.textContent += "1"
         }
 
-    else if (displayContent !== null) {
+    else if (display !== null) {
 
-        displayContent.textContent += "1";
+        display.textContent += "1";
         displayFormula.textContent += "1";
         audio.play();
     }
         }
     );
 two.addEventListener("click", ()=>{
-    if (displayContent.textContent === "0") {
-        displayContent.textContent = ""
+    if (display.textContent === "0") {
+        display.textContent = ""
     };
-    displayContent.textContent += "2";
+    display.textContent += "2";
     audio.play();}
 );
 three.addEventListener("click", ()=>{
-    if (displayContent.textContent === "0") {
-        displayContent.textContent = ""
+    if (display.textContent === "0") {
+        display.textContent = ""
     };
-    displayContent.textContent += "3";
+    display.textContent += "3";
     
     audio.play();
     }
@@ -91,82 +92,84 @@ three.addEventListener("click", ()=>{
 
 );
 four.addEventListener("click", ()=>{
-    if (displayContent.textContent === "0") {
-        displayContent.textContent = ""
+    if (display.textContent === "0") {
+        display.textContent = ""
     };
-    displayContent.textContent += "4";
+    display.textContent += "4";
     audio.play()}
 );
 five.addEventListener("click", ()=>{
-    if (displayContent.textContent === "0") {
-        displayContent.textContent = ""
+    if (display.textContent === "0") {
+        display.textContent = ""
     };
-    displayContent.textContent += "5";
+    display.textContent += "5";
     audio.play()}
 );
 six.addEventListener("click", ()=>{
-    if (displayContent.textContent === "0") {
-        displayContent.textContent = ""
+    if (display.textContent === "0") {
+        display.textContent = ""
     };
-    displayContent.textContent += "6";
+    display.textContent += "6";
     audio.play()
     }
 );
 seven.addEventListener("click", ()=>{
-    if (displayContent.textContent === "0") {
-        displayContent.textContent = ""
+    if (display.textContent === "0") {
+        display.textContent = ""
     };
-    displayContent.textContent += "7";
+    display.textContent += "7";
     audio.play() 
     }
 );
 eight.addEventListener("click", ()=>{
-    if (displayContent.textContent === "0") {
-        displayContent.textContent = ""
+    if (display.textContent === "0") {
+        display.textContent = ""
     };
-    displayContent.textContent += "8";
+    display.textContent += "8";
     audio.play()
 }
 )
 nine.addEventListener("click", ()=>{
-    if (displayContent.textContent === "0") {
-        displayContent.textContent = ""
+    if (display.textContent === "0") {
+        display.textContent = ""
     };
-    displayContent.textContent += "9";
+    display.textContent += "9";
     audio.play()}
 );
 zero.addEventListener("click", ()=>{
-    if (displayContent.textContent === "0") {
-        displayContent.textContent = ""
+    if (display.textContent === "0") {
+        display.textContent = ""
     };
-    displayContent.textContent += "0";
+    display.textContent += "0";
     audio.play()
     }
 );
 
 //for operator buttons (add,subtract,multiply,divide),
-// if displayContent ="", firstNumber = displayContent,
+// if display ="", firstNumber = display,
 // and put the clicked operator
 //BUG: pressing equal more than once adds firstNumber each time;
 
 addBtn.addEventListener("click", ()=> {
     if (!firstNumber) {
-        firstNumber = parseInt(displayContent.textContent);
+        firstNumber = parseInt(display.textContent);
         operator = add;
-        displayContent.textContent = '';
+        display.textContent = '';
     }
-   /*
+   
     else if (firstNumber !== null && secondNumber !== null) {
-        firstNumber = parseInt(displayContent.textContent);
+        firstNumber = parseInt(display.textContent);
+        operator = add;
+        secondNumber = null;
     }
-   */
+   
     
     else {
         
-        secondNumber = parseInt(displayContent.textContent);
+        secondNumber = parseInt(display.textContent);
         
-        displayContent.textContent = operate(firstNumber, operator, secondNumber);
-        
+        sum = operate(firstNumber, operator, secondNumber);
+        display.textContent = sum;
         
     }
 })
@@ -174,15 +177,15 @@ addBtn.addEventListener("click", ()=> {
 //for equal button, firstNumber and secondNumber has to exist
 equalBtn.addEventListener('click', () => {
     
-   secondNumber = parseInt(displayContent.textContent);
-    displayContent.textContent = operate(firstNumber, operator, secondNumber);
-    
+   secondNumber = parseInt(display.textContent);
+    sum = operate(firstNumber, operator, secondNumber);
+    display.textContent = sum;
     
     
 })
-//for clear button just displayContent = "";
+//for clear button just display = "";
 clearBtn.addEventListener("click", ()=>{
-    displayContent.textContent ="0";
+    display.textContent ="0";
     displayFormula.textContent = '';
     firstNumber = '';
     secondNumber = '';
