@@ -157,12 +157,14 @@ addBtn.addEventListener("click", ()=> {
         display.textContent = '';
     }
    
-    else if (firstNumber !== null && secondNumber !== null) {
-        firstNumber = parseInt(display.textContent);
-        operator = add;
+    
+    else if (sum !== null) {
+        firstNumber = sum;
         secondNumber = null;
+        operator = add;
+        display.textContent = '';
     }
-   
+
     
     else {
         
@@ -173,6 +175,28 @@ addBtn.addEventListener("click", ()=> {
         
     }
 })
+
+subtractBtn.addEventListener("click", () => {
+    if (!firstNumber) {
+        firstNumber = parseInt(display.textContent);
+        operator = subtract;
+        display.textContent = '';
+
+    }
+    else if(sum !== null) {
+        firstNumber = sum;
+        secondNumber = null;
+        operator = subtract;
+        display.textContent = '';
+
+    }
+
+    else {
+        secondNumber = parseInt(display.textContent);
+        sum = operate(firstNumber, operator, secondNumber);
+        display.textContent = sum;
+    }
+}) 
 
 //for equal button, firstNumber and secondNumber has to exist
 equalBtn.addEventListener('click', () => {
