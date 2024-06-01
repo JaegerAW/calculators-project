@@ -59,16 +59,15 @@ const audio = new Audio("pick-92276.mp3");
 
 one.addEventListener("click", ()=>{
     if (display.textContent === "0") {
-        display.textContent = "1";
+        display.textContent = ""
+        display.textContent += "1"
+        displayFormula.textContent += "1"
         }
-    else if (operator !== null) {
-        display.textContent = '';
-        display.textContent += '1';
-    }
-    
+
     else if (display !== null) {
+
         display.textContent += "1";
-        
+        displayFormula.textContent += "1";
         audio.play();
     }
         }
@@ -152,25 +151,31 @@ zero.addEventListener("click", ()=>{
 //BUG: pressing equal more than once adds firstNumber each time;
 
 addBtn.addEventListener("click", ()=> {
-    if (!firstNumber) {
-        firstNumber = parseInt(display.textContent);
-        operator = add;
-        
+    if (operator === undefined) { //beginning of equation, bug: when i try 1 + 1 + 1,
+        // the second + hits !firstNumber, so display = '' 
+        firstNumber = parseInt(display.textContent); //sets first number  
+        operator = add; // sets operator
+        display.textContent = '';
+        console.log('hello')
     }
    
     
-    else if (operator !== null) {
-        secondNumber = parseInt(display.textContent);
-        sum = operate(firstNumber, operator, secondNumber);
+    else if (sum !== undefined) { // this is to make 1 + 1 = 2, + 1 = 3 to work
         firstNumber = sum;
-        display.textContent = sum;
+        secondNumber = null;
         operator = add;
+        display.textContent = '';
+        console.log("hi");
     }
 
     
     else {
         
         secondNumber = parseInt(display.textContent);
+        operator = add;
+        sum = operate(firstNumber, operator, secondNumber);
+        firstNumber = sum;
+        display.textContent = '';
         
     }
 })
@@ -182,16 +187,6 @@ subtractBtn.addEventListener("click", () => {
         display.textContent = '';
 
     }
-
-    else if (operator !== null) {
-    
-        secondNumber = parseInt(display.textContent);
-        sum = operate(firstNumber, operator, secondNumber);
-        firstNumber = sum;
-        display.textContent ="";
-        operator = subtract;
-
-    }
     else if(sum !== null) {
         firstNumber = sum;
         secondNumber = null;
@@ -200,10 +195,10 @@ subtractBtn.addEventListener("click", () => {
 
     }
 
-
     else {
         secondNumber = parseInt(display.textContent);
-      
+        sum = operate(firstNumber, operator, secondNumber);
+        display.textContent = sum;
     }
 }) 
 
@@ -213,7 +208,6 @@ equalBtn.addEventListener('click', () => {
    secondNumber = parseInt(display.textContent);
     sum = operate(firstNumber, operator, secondNumber);
     display.textContent = sum;
-    firstNumber = sum;
     
     
 })
@@ -221,6 +215,8 @@ equalBtn.addEventListener('click', () => {
 clearBtn.addEventListener("click", ()=>{
     display.textContent ="0";
     displayFormula.textContent = '';
-    firstNumber = '';
-    secondNumber = '';
+    firstNumber = undefined;//this works, total reset, so add can work as if page is refreshed
+    secondNumber = undefined;
+    sum = undefined;
+    operator = undefined;
 });
