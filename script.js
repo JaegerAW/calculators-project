@@ -59,15 +59,16 @@ const audio = new Audio("pick-92276.mp3");
 
 one.addEventListener("click", ()=>{
     if (display.textContent === "0") {
-        display.textContent = ""
-        display.textContent += "1"
-        displayFormula.textContent += "1"
+        display.textContent = "1";
         }
-
+    else if (operator !== null) {
+        display.textContent = '';
+        display.textContent += '1';
+    }
+    
     else if (display !== null) {
-
         display.textContent += "1";
-        displayFormula.textContent += "1";
+        
         audio.play();
     }
         }
@@ -154,24 +155,22 @@ addBtn.addEventListener("click", ()=> {
     if (!firstNumber) {
         firstNumber = parseInt(display.textContent);
         operator = add;
-        display.textContent = '';
+        
     }
    
     
-    else if (sum !== null) {
+    else if (operator !== null) {
+        secondNumber = parseInt(display.textContent);
+        sum = operate(firstNumber, operator, secondNumber);
         firstNumber = sum;
-        secondNumber = null;
+        display.textContent = sum;
         operator = add;
-        display.textContent = '';
     }
 
     
     else {
         
         secondNumber = parseInt(display.textContent);
-        
-        sum = operate(firstNumber, operator, secondNumber);
-        display.textContent = sum;
         
     }
 })
@@ -183,6 +182,16 @@ subtractBtn.addEventListener("click", () => {
         display.textContent = '';
 
     }
+
+    else if (operator !== null) {
+    
+        secondNumber = parseInt(display.textContent);
+        sum = operate(firstNumber, operator, secondNumber);
+        firstNumber = sum;
+        display.textContent ="";
+        operator = subtract;
+
+    }
     else if(sum !== null) {
         firstNumber = sum;
         secondNumber = null;
@@ -191,10 +200,10 @@ subtractBtn.addEventListener("click", () => {
 
     }
 
+
     else {
         secondNumber = parseInt(display.textContent);
-        sum = operate(firstNumber, operator, secondNumber);
-        display.textContent = sum;
+      
     }
 }) 
 
@@ -204,6 +213,7 @@ equalBtn.addEventListener('click', () => {
    secondNumber = parseInt(display.textContent);
     sum = operate(firstNumber, operator, secondNumber);
     display.textContent = sum;
+    firstNumber = sum;
     
     
 })
