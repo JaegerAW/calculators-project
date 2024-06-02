@@ -300,7 +300,15 @@ percentageBtn.addEventListener("click", () => {
     secondNumber = undefined;
     clearDisplay = true;
 })
-
+negativeBtn.addEventListener("click", () => {
+    firstNumber = parseFloat(display.textContent);
+    sum = firstNumber - (firstNumber * 2);
+    display.textContent = sum;
+    firstNumber = sum;
+    operator = undefined;
+    secondNumber = undefined;
+    cleraDisplay = true;
+})
 //for equal button, firstNumber and secondNumber has to exist
 equalBtn.addEventListener('click', () => {
     
