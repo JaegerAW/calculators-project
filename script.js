@@ -56,12 +56,16 @@ const displayFormula = document.querySelector('#formula');
 
 
 const audio = new Audio("pick-92276.mp3");
-let clearDisplay = true;
+let clearDisplay = true;// we need to clear display every time an operator is added
+//this way, display still shows firstNumber,
+
+
+//num buttons
 one.addEventListener("click", ()=>{
     if (clearDisplay === true) {
         display.textContent = ""
         display.textContent += "1"
-        clearDisplay = false;   
+        clearDisplay = false;  //change to false, so we can add more numbers after. 
     }
 
     else {
@@ -130,12 +134,17 @@ six.addEventListener("click", ()=>{
     }
 );
 seven.addEventListener("click", ()=>{
-    if (display.textContent === "0") {
+    if (clearDisplay === true) {
         display.textContent = ""
-    };
-    display.textContent += "7";
-    audio.play() 
+        display.textContent += "7"
+        clearDisplay = false;   
     }
+
+    else {
+        display.textContent += "7";
+    }
+    }
+
 );
 eight.addEventListener("click", ()=>{
     if (clearDisplay === true) {
@@ -173,16 +182,26 @@ zero.addEventListener("click", ()=>{
     }
 );
 
+decimalBtn.addEventListener("click", ()=> {
+    if (clearDisplay === true) {
+        display.textContent = "";
+        display.textContent += ".";
+        clearDisplay = false;
+        
+    }
+    else {display.textContent += "."}
+})
+
 //for operator buttons (add,subtract,multiply,divide),
 // if display ="", firstNumber = display,
 // and put the clicked operator
 //BUG: pressing equal more than once adds firstNumber each time;
 
 addBtn.addEventListener("click", ()=> {
-    if (!operator) { 
-        firstNumber = parseInt(display.textContent);
+    if (!operator) { //if operator doesnt exist, set firstNumber to display,operator to add, and next number input clears the display first.
+        firstNumber = parseFloat(display.textContent);
         operator = add;
-        clearDisplay = true;
+        clearDisplay = true;//clearDisplay sets back to true, so that we can add secondNumber
     }
    
     
@@ -190,8 +209,8 @@ addBtn.addEventListener("click", ()=> {
     
     else {
         
-        secondNumber = parseInt(display.textContent);
-        
+        secondNumber = parseFloat(display.textContent);
+        //if operator already exists, add secondNumber to complete the formula
         console.log("ho")
         sum = operate(firstNumber, operator, secondNumber);
         firstNumber = sum;
@@ -204,7 +223,7 @@ addBtn.addEventListener("click", ()=> {
 
 subtractBtn.addEventListener("click", () => {
     if (!operator) { 
-        firstNumber = parseInt(display.textContent);
+        firstNumber = parseFloat(display.textContent);
         operator = subtract;
         clearDisplay = true;
     }
@@ -214,7 +233,7 @@ subtractBtn.addEventListener("click", () => {
     
     else {
         
-        secondNumber = parseInt(display.textContent);
+        secondNumber = parseFloat(display.textContent);
         
         console.log("ho")
         sum = operate(firstNumber, operator, secondNumber);
@@ -225,15 +244,72 @@ subtractBtn.addEventListener("click", () => {
 
     }
 }) 
+multiplyBtn.addEventListener("click", () => {
+    if (!operator) { 
+        firstNumber = parseFloat(display.textContent);
+        operator = multiply;
+        clearDisplay = true;
+    }
+   
+    
+    
+    
+    else {
+        
+        secondNumber = parseFloat(display.textContent);
+        
+        console.log("ho")
+        sum = operate(firstNumber, operator, secondNumber);
+        firstNumber = sum;
+        display.textContent = sum;
+        clearDisplay = true;
+        secondNumber = undefined;
+
+    }
+});
+
+divideBtn.addEventListener("click", () => {
+    if (!operator) { 
+        firstNumber = parseFloat(display.textContent);
+        operator = divide;
+        clearDisplay = true;
+    }
+   
+    
+    
+    
+    else {
+        
+        secondNumber = parseFloat(display.textContent);
+        
+        console.log("ho")
+        sum = operate(firstNumber, operator, secondNumber);
+        firstNumber = sum;
+        display.textContent = sum;
+        clearDisplay = true;
+        secondNumber = undefined;
+
+    }
+})
+percentageBtn.addEventListener("click", () => {
+    firstNumber = parseFloat(display.textContent);
+    sum = firstNumber / 100;
+    display.textContent = sum;
+    firstNumber = sum;
+    operator = undefined;
+    secondNumber = undefined;
+    clearDisplay = true;
+})
 
 //for equal button, firstNumber and secondNumber has to exist
 equalBtn.addEventListener('click', () => {
     
-   secondNumber = parseInt(display.textContent);
+   secondNumber = parseFloat(display.textContent);
+   
     sum = operate(firstNumber, operator, secondNumber);
     display.textContent = sum;
     firstNumber = sum;
-    operator = undefined;
+    operator = undefined;//we remove operator so that the loop works.
     secondNumber = undefined;
     clearDisplay = true;
     
