@@ -70,44 +70,63 @@ one.addEventListener("click", ()=>{
 }
     );
 two.addEventListener("click", ()=>{
-    if (display.textContent === "0") {
+    if (clearDisplay === true) {
         display.textContent = ""
-    };
-    display.textContent += "2";
-    audio.play();}
+        display.textContent += "2"
+        clearDisplay = false;   
+    }
+
+    else {
+        display.textContent += "2";
+    }}
 );
 three.addEventListener("click", ()=>{
-    if (display.textContent === "0") {
+    if (clearDisplay === true) {
         display.textContent = ""
-    };
-    display.textContent += "3";
-    
-    audio.play();
+        display.textContent += "3"
+        clearDisplay = false;   
+    }
+
+    else {
+        display.textContent += "3";
+    }
     }
 
 
 
 );
 four.addEventListener("click", ()=>{
-    if (display.textContent === "0") {
+    if (clearDisplay === true) {
         display.textContent = ""
-    };
-    display.textContent += "4";
-    audio.play()}
+        display.textContent += "4"
+        clearDisplay = false;   
+    }
+
+    else {
+        display.textContent += "4";
+    }}
 );
 five.addEventListener("click", ()=>{
-    if (display.textContent === "0") {
+    if (clearDisplay === true) {
         display.textContent = ""
-    };
-    display.textContent += "5";
-    audio.play()}
+        display.textContent += "5"
+        clearDisplay = false;   
+    }
+
+    else {
+        display.textContent += "5";
+    }}
 );
 six.addEventListener("click", ()=>{
-    if (display.textContent === "0") {
+    if (clearDisplay === true) {
         display.textContent = ""
-    };
-    display.textContent += "6";
-    audio.play()
+        display.textContent += "6"
+        clearDisplay = false;   
+    }
+
+    else {
+        display.textContent += "6";
+    }
     }
 );
 seven.addEventListener("click", ()=>{
@@ -119,26 +138,38 @@ seven.addEventListener("click", ()=>{
     }
 );
 eight.addEventListener("click", ()=>{
-    if (display.textContent === "0") {
+    if (clearDisplay === true) {
         display.textContent = ""
-    };
-    display.textContent += "8";
-    audio.play()
+        display.textContent += "8"
+        clearDisplay = false;   
+    }
+
+    else {
+        display.textContent += "8";
+    }
 }
 )
 nine.addEventListener("click", ()=>{
-    if (display.textContent === "0") {
+    if (clearDisplay === true) {
         display.textContent = ""
-    };
-    display.textContent += "9";
-    audio.play()}
+        display.textContent += "9"
+        clearDisplay = false;   
+    }
+
+    else {
+        display.textContent += "9";
+    }}
 );
 zero.addEventListener("click", ()=>{
-    if (display.textContent === "0") {
+    if (clearDisplay === true) {
         display.textContent = ""
-    };
-    display.textContent += "0";
-    audio.play()
+        display.textContent += "0"
+        clearDisplay = false;   
+    }
+
+    else {
+        display.textContent += "0";
+    }
     }
 );
 
@@ -155,14 +186,7 @@ addBtn.addEventListener("click", ()=> {
     }
    
     
-    /*else if (sum !== undefined) { // this is to make 1 + 1 = 2, + 1 = 3 to work
-        firstNumber = sum;
-        secondNumber = null;
-        operator = add;
-        display.textContent = '';
-        console.log("hi");
-    }*/
-
+    
     
     else {
         
@@ -174,29 +198,31 @@ addBtn.addEventListener("click", ()=> {
         display.textContent = sum;
         clearDisplay = true;
         secondNumber = undefined;
-        
+
     }
 })
 
 subtractBtn.addEventListener("click", () => {
-    if (!firstNumber) {
+    if (!operator) { 
         firstNumber = parseInt(display.textContent);
         operator = subtract;
-        display.textContent = '';
-
+        clearDisplay = true;
     }
-    else if(sum !== null) {
-        firstNumber = sum;
-        secondNumber = null;
-        operator = subtract;
-        display.textContent = '';
-
-    }
-
+   
+    
+    
+    
     else {
+        
         secondNumber = parseInt(display.textContent);
+        
+        console.log("ho")
         sum = operate(firstNumber, operator, secondNumber);
+        firstNumber = sum;
         display.textContent = sum;
+        clearDisplay = true;
+        secondNumber = undefined;
+
     }
 }) 
 
