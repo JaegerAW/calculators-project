@@ -83,7 +83,11 @@ body {
 
 .button:hover {
     cursor: pointer;
+    
+
 }
+
+
 .zero {
     width: 34%;
     border-radius: 30px;
