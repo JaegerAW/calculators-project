@@ -29,7 +29,7 @@ body {
     justify-content: flex-end;
 }
 .calculator-row >  .grey {
-    background-color: #D8D8D8 ;
+    background-color: #3B93FB ;
     color: black;
 }
 
@@ -69,7 +69,7 @@ body {
 
   .button {
     flex: auto;
-    background-color: grey;
+    background-color: #3BFBA3;
     border-radius: 50%;
     padding-top: 10px;
     margin: 3px;
@@ -79,6 +79,9 @@ body {
     font-weight: bold;
     
     
+}
+.number {
+    color: black;
 }
 
 .button:hover {
@@ -91,4 +94,8 @@ body {
 .zero {
     width: 34%;
     border-radius: 30px;
+}
+
+#decimal {
+    color: black;
 }
